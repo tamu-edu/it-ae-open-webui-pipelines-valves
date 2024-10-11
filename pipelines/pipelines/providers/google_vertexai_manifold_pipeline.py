@@ -40,7 +40,7 @@ class Pipeline:
 
     def __init__(self):
         self.type = "manifold"
-        self.name = "vertexai: "
+        self.name = "Google Vertex AI (protected): "
 
         self.valves = self.Valves(
             **{
@@ -54,6 +54,7 @@ class Pipeline:
             {"id": "gemini-1.5-pro-001", "name": "Gemini 1.5 Pro"},
             {"id": "gemini-flash-experimental", "name": "Gemini 1.5 Flash Experimental"},
             {"id": "gemini-pro-experimental", "name": "Gemini 1.5 Pro Experimental"},
+            {"id": "mistral-large", "name": "Mistral Large"},
         ]
 
     async def on_startup(self) -> None:
