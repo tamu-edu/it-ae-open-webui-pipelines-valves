@@ -10,6 +10,7 @@ class Pipeline:
     class Valves(BaseModel):
         CLOUDFLARE_OPENAI_API_BASE_URL: str = ""
         CLOUDFLARE_OPENAI_API_KEY: str = ""
+        CLOUDFLARE_ACCOUNT_ID: str = ""
         pass
 
     def __init__(self):
@@ -28,6 +29,9 @@ class Pipeline:
                 ),
                 "CLOUDFLARE_OPENAI_BASE_URL": os.getenv(
                     "CLOUDFLARE_OPENAI_BASE_URL", "your-cloudflare-openai-base-url-here"
+                ),
+                "CLOUDFLARE_ACCOUNT_ID": os.getenv(
+                    "CLOUDFLARE_ACCOUNT_ID", "your-cloudflare-account-id-here"
                 )
             }
         )
