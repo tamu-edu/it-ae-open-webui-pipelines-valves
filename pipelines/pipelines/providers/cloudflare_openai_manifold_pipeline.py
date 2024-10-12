@@ -62,7 +62,10 @@ class Pipeline:
                 headers["Authorization"] = f"Bearer {self.valves.CLOUDFLARE_OPENAI_API_KEY}"
                 headers["Content-Type"] = "application/json"
 
-                print(f"DEBUG:{__name__}, URL: {self.valves.CLOUDFLARE_OPENAI_API_BASE_URL}/{self.valves.CLOUDFLARE_ACCOUNT_ID}/ai/v1/models")
+                print(f"DEBUG:{__name__}
+                print(f"DEBUG: {__name__}, Loaded API Key: {self.valves.CLOUDFLARE_OPENAI_API_KEY}")
+                print(f"DEBUG: {__name__}, Base URL: {self.valves.CLOUDFLARE_OPENAI_API_BASE_URL}")
+                print(f"DEBUG: {__name__}, Base URL: {self.valves.CLOUDFLARE_ACCOUNT_ID}")
 
                 r = requests.get(
                     f"{self.valves.CLOUDFLARE_OPENAI_API_BASE_URL}/{self.valves.CLOUDFLARE_ACCOUNT_ID}/ai/v1/models", headers=headers
@@ -70,7 +73,7 @@ class Pipeline:
 
                 models = r.json()
 
-                print(f"DEBUG:{__name__}, MODELS\n{{models}}")
+                print(f"DEBUG:{__name__}, MODELS\n{models}")
 
                 return [
                     {
