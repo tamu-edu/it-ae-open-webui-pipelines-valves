@@ -25,7 +25,7 @@ class Pipeline:
             **{
                 "CLOUDFLARE_OPENAI_API_KEY": os.getenv(
                     "CLOUDFLARE_OPENAI_API_KEY", "your-cloudflare-openai-api-key-here"
-                )
+                ),
                 "CLOUDFLARE_OPENAI_BASE_URL": os.getenv(
                     "CLOUDFLARE_OPENAI_BASE_URL", "your-cloudflare-openai-base-url-here"
                 )
