@@ -59,7 +59,7 @@ class Pipeline:
                 headers["Content-Type"] = "application/json"
 
                 r = requests.get(
-                    f"{self.valves.OPENAI_API_BASE_URL}/{self.valves.CLOUDFLARE_ACCOUNT_ID}/ai/v1//models", headers=headers
+                    f"{self.valves.CLOUDFLARE_OPENAI_API_BASE_URL}/{self.valves.CLOUDFLARE_ACCOUNT_ID}/ai/v1/models", headers=headers
                 )
 
                 models = r.json()
