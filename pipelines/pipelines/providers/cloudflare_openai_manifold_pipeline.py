@@ -62,7 +62,7 @@ class Pipeline:
                 headers["Authorization"] = f"Bearer {self.valves.CLOUDFLARE_OPENAI_API_KEY}"
                 headers["Content-Type"] = "application/json"
 
-                print(f"DEBUG:{__name__}
+                print(f"DEBUG:{__name__}")
                 print(f"DEBUG: {__name__}, Loaded API Key: {self.valves.CLOUDFLARE_OPENAI_API_KEY}")
                 print(f"DEBUG: {__name__}, Base URL: {self.valves.CLOUDFLARE_OPENAI_API_BASE_URL}")
                 print(f"DEBUG: {__name__}, Base URL: {self.valves.CLOUDFLARE_ACCOUNT_ID}")
