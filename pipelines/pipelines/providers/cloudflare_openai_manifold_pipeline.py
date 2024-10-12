@@ -66,7 +66,7 @@ class Pipeline:
                     f"{self.valves.CLOUDFLARE_OPENAI_API_BASE_URL}/{self.valves.CLOUDFLARE_ACCOUNT_ID}/ai/v1/models", headers=headers
                 )
 
-                print(f"DEBUG:{__name__}, URL: self.valves.CLOUDFLARE_OPENAI_API_BASE_URL}/{{self.valves.CLOUDFLARE_ACCOUNT_ID}}/ai/v1/models")
+                print(f"DEBUG:{__name__}, URL: {self.valves.CLOUDFLARE_OPENAI_API_BASE_URL}/{self.valves.CLOUDFLARE_ACCOUNT_ID}/ai/v1/models")
 
                 models = r.json()
 
