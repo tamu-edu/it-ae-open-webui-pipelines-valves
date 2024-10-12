@@ -8,7 +8,7 @@ import requests
 
 class Pipeline:
     class Valves(BaseModel):
-        CLOUDFLARE_OPENAI_API_BASE_URL: str = "https://api.openai.com/v1"
+        CLOUDFLARE_OPENAI_API_BASE_URL: str = ""
         CLOUDFLARE_OPENAI_API_KEY: str = ""
         pass
 
@@ -18,13 +18,16 @@ class Pipeline:
         # Best practice is to not specify the id so that it can be automatically inferred from the filename, so that users can install multiple versions of the same pipeline.
         # The identifier must be unique across all pipelines.
         # The identifier must be an alphanumeric string that can include underscores or hyphens. It cannot contain spaces, special characters, slashes, or backslashes.
-        # self.id = "openai_pipeline"
-        self.name = "OpenAI: "
+        # self.id = "cloudflare_openai_pipeline"
+        self.name = "Cloudflare (OpenAI API): "
 
         self.valves = self.Valves(
             **{
                 "CLOUDFLARE_OPENAI_API_KEY": os.getenv(
-                    "CLOUDFLARE_OPENAI_API_KEY", "your-openai-api-key-here"
+                    "CLOUDFLARE_OPENAI_API_KEY", "your-cloudflare-openai-api-key-here"
+                )
+                "CLOUDFLARE_OPENAI_BASE_URL": os.getenv(
+                    "CLOUDFLARE_OPENAI_BASE_URL", "your-cloudflare-openai-base-url-here"
                 )
             }
         )
@@ -49,14 +52,14 @@ class Pipeline:
         pass
 
     def get_openai_models(self):
-        if self.valves.OPENAI_API_KEY:
+        if self.valves.CLOUDFLARE_OPENAI_API_KEY:
             try:
                 headers = {}
-                headers["Authorization"] = f"Bearer {self.valves.OPENAI_API_KEY}"
+                headers["Authorization"] = f"Bearer {self.valves.CLOUDFLARE_OPENAI_API_KEY}"
                 headers["Content-Type"] = "application/json"
 
                 r = requests.get(
-                    f"{self.valves.OPENAI_API_BASE_URL}/models", headers=headers
+                    f"{self.valves.OPENAI_API_BASE_URL}/{self.valves.CLOUDFLARE_ACCOUNT_ID}/ai/v1//models", headers=headers
                 )
 
                 models = r.json()
@@ -91,7 +94,7 @@ class Pipeline:
         print(user_message)
 
         headers = {}
-        headers["Authorization"] = f"Bearer {self.valves.OPENAI_API_KEY}"
+        headers["Authorization"] = f"Bearer {self.valves.CLOUDFLARE_OPENAI_API_KEY}"
         headers["Content-Type"] = "application/json"
 
         payload = {**body, "model": model_id}
@@ -107,7 +110,7 @@ class Pipeline:
 
         try:
             r = requests.post(
-                url=f"{self.valves.OPENAI_API_BASE_URL}/chat/completions",
+                url=f"{self.valves.CLOUDFLARE_OPENAI_API_BASE_URL}/{self.valves.CLOUDFLARE_ACCOUNT_ID}/ai/v1/chat/completions",
                 json=payload,
                 headers=headers,
                 stream=True,
