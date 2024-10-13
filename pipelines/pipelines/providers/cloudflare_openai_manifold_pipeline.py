@@ -67,7 +67,7 @@ class Pipeline:
                 print(f"DEBUG: {__name__}, Base URL: {self.valves.CLOUDFLARE_OPENAI_API_BASE_URL}")
                 print(f"DEBUG: {__name__}, Base URL: {self.valves.CLOUDFLARE_ACCOUNT_ID}")
                 print(f"DEBUG: {__name__}, Account ID: {self.valves.CLOUDFLARE_ACCOUNT_ID}")
-                print(f"DEBUG: {__name__}, Full URL: {self.valves.CLOUDFLARE_OPENAI_API_BASE_URL}/{self.valves.CLOUDFLARE_ACCOUNT_ID}/ai/v1/models")
+                print(f"DEBUG: {__name__}, Full URL: {self.valves.CLOUDFLARE_OPENAI_API_BASE_URL}/{self.valves.CLOUDFLARE_ACCOUNT_ID}/ai/search")
 
                 r = requests.get(
                     f"{self.valves.CLOUDFLARE_OPENAI_API_BASE_URL}/{self.valves.CLOUDFLARE_ACCOUNT_ID}/ai/models/search", headers=headers
@@ -75,15 +75,15 @@ class Pipeline:
 
                 models = r.json()
 
-                print(f"DEBUG:{__name__}, MODELS\n{models}")
+                print(f"DEBUG:{__name__}, MODELS: {models}")
 
                 return [
                     {
                         "id": model["id"],
                         "name": model["name"] if "name" in model else model["id"],
                     }
-                    for model in models["data"]
-                    if "gpt" in model["id"]
+                    for model in models["result"]
+                    if "@cf" in model["name"]
                 ]
 
             except Exception as e:
