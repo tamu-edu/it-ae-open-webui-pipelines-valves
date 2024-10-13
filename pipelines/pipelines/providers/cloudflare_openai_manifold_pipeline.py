@@ -79,8 +79,8 @@ class Pipeline:
 
                 return [
                     {
-                        "id": model["id"],
-                        #"id": model["name"],
+                        #"id": model["id"],
+                        "id": model["name"],
                         "name": model["name"] if "name" in model else model["id"],
                     }
                     for model in models["result"]
@@ -112,8 +112,7 @@ class Pipeline:
         headers["Authorization"] = f"Bearer {self.valves.CLOUDFLARE_OPENAI_API_KEY}"
         headers["Content-Type"] = "application/json"
 
-        #payload = {**body, "model": model_id}
-        payload = {**body, "model": name}
+        payload = {**body, "model": model_id}
 
         if "user" in payload:
             del payload["user"]
