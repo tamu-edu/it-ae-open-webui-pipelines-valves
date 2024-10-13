@@ -124,7 +124,7 @@ class Pipeline:
         print("----------------------------------------")
         print(f"Payload {__name__}: payload")
         print(f"URL {__name__}: {self.valves.CLOUDFLARE_OPENAI_API_BASE_URL}/{self.valves.CLOUDFLARE_ACCOUNT_ID}/ai/v1/chat/completions")
-        print(f"Headers {__name__}: headers"))
+        print(f"Headers {__name__}: headers")
         print("----------------------------------------")
 
         try:
