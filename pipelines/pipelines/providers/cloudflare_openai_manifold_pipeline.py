@@ -79,8 +79,8 @@ class Pipeline:
 
                 return [
                     {
-                        #"id": model["id"],
-                        "id": model["name"],
+                        "id": model["id"],
+                        #"id": model["name"],
                         "name": model["name"] if "name" in model else model["id"],
                     }
                     for model in models["result"]
@@ -122,6 +122,7 @@ class Pipeline:
             del payload["title"]
 
         print(payload)
+        print(f"{self.valves.CLOUDFLARE_OPENAI_API_BASE_URL}/{self.valves.CLOUDFLARE_ACCOUNT_ID}/ai/v1/chat/completions")
 
         try:
             r = requests.post(
