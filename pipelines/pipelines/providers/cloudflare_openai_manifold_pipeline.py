@@ -112,7 +112,8 @@ class Pipeline:
         headers["Authorization"] = f"Bearer {self.valves.CLOUDFLARE_OPENAI_API_KEY}"
         headers["Content-Type"] = "application/json"
 
-        payload = {**body, "model": model_id}
+        #payload = {**body, "model": model_id}
+        payload = {**body, "model": name}
 
         if "user" in payload:
             del payload["user"]
