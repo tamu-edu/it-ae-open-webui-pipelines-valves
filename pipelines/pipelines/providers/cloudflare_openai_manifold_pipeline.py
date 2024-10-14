@@ -55,10 +55,10 @@ class Pipeline:
         self.pipelines = self.get_openai_models()
         pass
 
-    def remove_first_two_sections(original_string):
+    def remove_first_two_sections(self, original_string):
         parts = original_string.split('/')
         suffix = '/'.join(parts[2:])
-        print(f"DEBUG: {parts}, {suffix}")
+        print(f"\nDEBUG: {parts}, {suffix}\n\n")
         return suffix
 
     def get_openai_models(self):
@@ -85,10 +85,10 @@ class Pipeline:
 
                 return [
                     {
-                        "id": model["id"],
+                        #"id": model["id"],
                         #"name": model["name"] if "name" in model else model["id"],
-                        #"id": remove_first_two_sections(model["name"]) if "name" in model else model["id"],
-                        "name": remove_first_two_sections(model["name"]) if "name" in model else model["id"],
+                        "id": self.remove_first_two_sections(model["name"]) if "name" in model else model["id"],
+                        "name": self.remove_first_two_sections(model["name"]) if "name" in model else model["id"],
                     }
                     for model in models["result"]
                     if "@cf" in model["name"]
