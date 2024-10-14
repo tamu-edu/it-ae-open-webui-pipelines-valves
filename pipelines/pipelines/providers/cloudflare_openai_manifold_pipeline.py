@@ -57,7 +57,9 @@ class Pipeline:
 
     def remove_first_two_sections(original_string):
         parts = original_string.split('/')
-        return '/'.join(parts[2:])
+        suffix = '/'.join(parts[2:]
+        print(f"DEBUG: {parts}, {suffix}")
+        return suffix
 
     def get_openai_models(self):
         if self.valves.CLOUDFLARE_OPENAI_API_KEY:
