@@ -55,6 +55,10 @@ class Pipeline:
         self.pipelines = self.get_openai_models()
         pass
 
+    def remove_first_two_sections(original_string):
+        parts = original_string.split('/')
+        return '/'.join(parts[2:])
+
     def get_openai_models(self):
         if self.valves.CLOUDFLARE_OPENAI_API_KEY:
             try:
@@ -79,12 +83,13 @@ class Pipeline:
 
                 return [
                     {
-                        "id": model["id"],
-                        #"id": model["name"],
-                        "name": model["name"] if "name" in model else model["id"],
+                        #"id": model["id"],
+                        #"name": model["name"] if "name" in model else model["id"],
+                        "id": remove_first_two_sections(model["name"]) if "name" in model else model["id"],
+                        "name": remove_first_two_sections(model["name"]) if "name" in model else model["id"],
                     }
                     for model in models["result"]
-                    if "@cf/google" in model["name"]
+                    if "@cf" in model["name"]
                 ]
 
             except Exception as e:
