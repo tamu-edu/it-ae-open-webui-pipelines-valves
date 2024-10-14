@@ -57,7 +57,7 @@ class Pipeline:
 
     def remove_first_two_sections(original_string):
         parts = original_string.split('/')
-        suffix = '/'.join(parts[2:]
+        suffix = '/'.join(parts[2:])
         print(f"DEBUG: {parts}, {suffix}")
         return suffix
 
