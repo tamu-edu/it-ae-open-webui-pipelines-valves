@@ -55,11 +55,25 @@ class Pipeline:
         self.pipelines = self.get_openai_models()
         pass
 
-    def remove_first_two_sections(self, original_string):
-        parts = original_string.split('/')
-        suffix = '/'.join(parts[2:])
-        print(f"\nDEBUG: {parts}, {suffix}\n\n")
-        return suffix
+#    def modify_model_path(self, original_string):
+#        parts = original_string.split('/')
+#        suffix = '/'.join(parts[2:])
+#        print(f"\nDEBUG: {parts}, {suffix}\n\n")
+#        return suffix
+
+    def modify_model_path(self, input_string):
+        # Remove the '@' symbol
+        cleaned_string = input_string.replace('@', '')
+        # Replace slashes with underscores
+        cleaned_string = cleaned_string.replace('/', '_')
+        return cleaned_string
+
+    def reverse_model_path(self, input_string):
+        # Replace underscores with slashes
+        reversed_string = input_string.replace('_', '/')
+        # Add the '@' symbol at the front
+        reversed_string = '@' + reversed_string
+        return reversed_string
 
     def get_openai_models(self):
         if self.valves.CLOUDFLARE_OPENAI_API_KEY:
@@ -87,8 +101,8 @@ class Pipeline:
                     {
                         #"id": model["id"],
                         #"name": model["name"] if "name" in model else model["id"],
-                        "id": self.remove_first_two_sections(model["name"]) if "name" in model else model["id"],
-                        "name": self.remove_first_two_sections(model["name"]) if "name" in model else model["id"],
+                        "id": self.modify_model_path(model["name"]) if "name" in model else model["id"],
+                        "name": self.modify_model_path(model["name"]) if "name" in model else model["id"],
                     }
                     for model in models["result"]
                     if "@cf" in model["name"]
@@ -118,6 +132,8 @@ class Pipeline:
         headers = {}
         headers["Authorization"] = f"Bearer {self.valves.CLOUDFLARE_OPENAI_API_KEY}"
         headers["Content-Type"] = "application/json"
+
+        model_id = self.reverse_model_path(model_id)
 
         payload = {**body, "model": model_id}
 
