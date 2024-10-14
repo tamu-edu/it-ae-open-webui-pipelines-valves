@@ -85,9 +85,9 @@ class Pipeline:
 
                 return [
                     {
-                        #"id": model["id"],
+                        "id": model["id"],
                         #"name": model["name"] if "name" in model else model["id"],
-                        "id": remove_first_two_sections(model["name"]) if "name" in model else model["id"],
+                        #"id": remove_first_two_sections(model["name"]) if "name" in model else model["id"],
                         "name": remove_first_two_sections(model["name"]) if "name" in model else model["id"],
                     }
                     for model in models["result"]
