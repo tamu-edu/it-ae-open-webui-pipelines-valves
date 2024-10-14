@@ -8,6 +8,7 @@ description: A pipeline for generating text and processing images using the AWS 
 requirements: requests, boto3
 environment_variables: AWS_ACCESS_KEY, AWS_SECRET_KEY, AWS_REGION_NAME
 """
+
 import base64
 import json
 import logging
