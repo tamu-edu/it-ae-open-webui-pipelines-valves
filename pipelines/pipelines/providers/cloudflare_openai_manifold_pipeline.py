@@ -114,6 +114,9 @@ class Pipeline:
 
         payload = {**body, "model": model_id}
 
+        print("----------------------------------------")
+        print(f"Payload {__name__}: {payload}")
+
         if "user" in payload:
             del payload["user"]
         if "chat_id" in payload:
