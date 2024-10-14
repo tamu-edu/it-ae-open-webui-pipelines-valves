@@ -84,7 +84,7 @@ class Pipeline:
                         "name": model["name"] if "name" in model else model["id"],
                     }
                     for model in models["result"]
-                    if "@cf" in model["name"]
+                    if "@cf/google" in model["name"]
                 ]
 
             except Exception as e:
