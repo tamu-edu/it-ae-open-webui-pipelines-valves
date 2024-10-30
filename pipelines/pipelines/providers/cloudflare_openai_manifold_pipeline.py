@@ -11,6 +11,7 @@ class Pipeline:
         CLOUDFLARE_OPENAI_API_BASE_URL: str = ""
         CLOUDFLARE_OPENAI_API_KEY: str = ""
         CLOUDFLARE_ACCOUNT_ID: str = ""
+        CLOUDFLARE_AI_GATEWAY_ID: str = ""
         pass
 
     def __init__(self):
@@ -32,6 +33,9 @@ class Pipeline:
                 ),
                 "CLOUDFLARE_ACCOUNT_ID": os.getenv(
                     "CLOUDFLARE_ACCOUNT_ID", "your-cloudflare-account-id-here"
+                )
+                "CLOUDFLARE_AI_GATEWAY_ID": os.getenv(
+                    "CLOUDFLARE_AI_GATEWAY_ID", "your-cloudflare-ai-gateway-id-here"
                 )
             }
         )
