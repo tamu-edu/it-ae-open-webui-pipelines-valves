@@ -9,7 +9,7 @@ class Pipeline:
         # You can add your custom valves here.
         AZURE_OPENAI_API_KEY: str
         AZURE_OPENAI_ENDPOINT: str
-        AZURE_OPENAI_DEPLOYMENT_NAME: str
+        AZURE_OPENAI_O1_DEPLOYMENT_NAME: str
         AZURE_OPENAI_API_VERSION: str
 
     def __init__(self):
@@ -23,7 +23,7 @@ class Pipeline:
             **{
                 "AZURE_OPENAI_API_KEY": os.getenv("AZURE_OPENAI_API_KEY", "your-azure-openai-api-key-here"),
                 "AZURE_OPENAI_ENDPOINT": os.getenv("AZURE_OPENAI_ENDPOINT", "your-azure-openai-endpoint-here"),
-                "AZURE_OPENAI_DEPLOYMENT_NAME": os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME", "your-deployment-name-here"),
+                "AZURE_OPENAI_O1_DEPLOYMENT_NAME": os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME", "your-deployment-name-here"),
                 "AZURE_OPENAI_API_VERSION": os.getenv("AZURE_OPENAI_API_VERSION", "2024-02-01"),
             }
         )
@@ -53,7 +53,7 @@ class Pipeline:
             "Content-Type": "application/json",
         }
 
-        url = f"{self.valves.AZURE_OPENAI_ENDPOINT}/openai/deployments/{self.valves.AZURE_OPENAI_DEPLOYMENT_NAME}/chat/completions?api-version={self.valves.AZURE_OPENAI_API_VERSION}"
+        url = f"{self.valves.AZURE_OPENAI_ENDPOINT}/openai/deployments/{self.valves.AZURE_OPENAI_O1_DEPLOYMENT_NAME}/chat/completions?api-version={self.valves.AZURE_OPENAI_API_VERSION}"
 
         allowed_params = {'messages', 'temperature', 'role', 'content', 'contentPart', 'contentPartImage',
                           'enhancements', 'data_sources', 'n', 'stream', 'stop', 'max_tokens', 'presence_penalty',
