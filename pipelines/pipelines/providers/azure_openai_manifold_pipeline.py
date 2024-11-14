@@ -15,7 +15,7 @@ class Pipeline:
 
     def __init__(self):
         self.type = "manifold"
-        self.name = "TAMU Azure OpenAI: "
+        self.name = "Azure OpenAI (Protected): "
         self.valves = self.Valves(
             **{
                 "AZURE_OPENAI_API_KEY": os.getenv("AZURE_OPENAI_API_KEY", "your-azure-openai-api-key-here"),
