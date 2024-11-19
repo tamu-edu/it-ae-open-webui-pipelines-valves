@@ -174,9 +174,3 @@ class Pipeline:
         except Exception as e:
             logging.error(f"Search failed: {str(e)}")
             return f"Error during search: {str(e)}"
-
-
-
-
-        
-        
