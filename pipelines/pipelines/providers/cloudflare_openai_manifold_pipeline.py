@@ -33,7 +33,7 @@ class Pipeline:
                 ),
                 "CLOUDFLARE_ACCOUNT_ID": os.getenv(
                     "CLOUDFLARE_ACCOUNT_ID", "your-cloudflare-account-id-here"
-                )
+                ),
                 "CLOUDFLARE_AI_GATEWAY_ID": os.getenv(
                     "CLOUDFLARE_AI_GATEWAY_ID", "your-cloudflare-ai-gateway-id-here"
                 )
