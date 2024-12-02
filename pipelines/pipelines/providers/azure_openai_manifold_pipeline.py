@@ -90,7 +90,7 @@ class Pipeline:
             if body["stream"]:
                 return r.iter_lines()
             else:
-                result = r.json()
+                result = r.json
                 print(f"response: {result})
                 return result
         except Exception as e:
