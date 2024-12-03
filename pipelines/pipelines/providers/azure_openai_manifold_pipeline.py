@@ -91,7 +91,7 @@ class Pipeline:
                 return r.iter_lines()
             else:
                 result = r.json
-                print(f"response: {result})
+                print(f"response: {result}")
                 return result
         except Exception as e:
             if r:
